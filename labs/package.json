@@ -1,0 +1,14 @@
+{
+  "name": "labs",
+  "version": "1.0.0",
+  "description": "labs challenge",
+  "main": "index.js",
+  "scripts": {
+    "test": "jasmine"
+  },
+  "keywords": [
+    "challenge"
+  ],
+  "author": "juaniloh, jojoriveraa",
+  "license": "ISC"
+}
