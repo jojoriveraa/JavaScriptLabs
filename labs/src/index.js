@@ -1,17 +1,16 @@
 alert("hello world 2");
 document.getElementById("main").innerHTML = "hello world";
 
-let min = 1;
-let max = 10;
-let j = 1;
-let i = 1;
-let random = Math.floor(Math.random() * (max - min + 1)) + min;
-let random2 = Math.floor(Math.random() * (max - min + 1)) + min;
+const min = 1;
+const max = 10;
+var counter = 1;
+const random = Math.floor(Math.random() * (max - min + 1)) + min;
+const random2 = Math.floor(Math.random() * (max - min + 1)) + min;
 
 console.log(random);
 console.log(random2);
 
-for (i; i <= random; i++) {
+for (let i = 1; i <= random; i++) {
     let num = document.createElement('p');
     switch (i) {
         case 1:
@@ -51,9 +50,11 @@ for (i; i <= random; i++) {
     document.getElementById("elements").appendChild(num);
 }
 
-while (j <= random2) {
+
+
+while (counter <= random2) {
     let num = document.createElement('p');
-    switch (j) {
+    switch (counter) {
         case 1:
             num.textContent = "Juan";
             break;
@@ -85,10 +86,10 @@ while (j <= random2) {
             num.textContent = "pen";
             break;
         default:
-            num.textContent = j;
+            num.textContent = counter;
             break;
     }
-    document.getElementById("elements2").appendChild(num);
-    j++;
+    document.getElementById("elements").appendChild(num);
+    counter++;
 }
 
