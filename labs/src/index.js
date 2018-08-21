@@ -1,3 +1,5 @@
+import './site.css'
+import getBrowserInfo from './getBrowserInfo'
 alert('hello world 2')
 document.getElementById('main').innerHTML = 'hello world'
 
@@ -90,3 +92,4 @@ while (counter <= random2) {
     counter++
 }
 
+document.getElementById('main').innerHTML = getBrowserInfo()
