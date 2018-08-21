@@ -3,8 +3,8 @@ import getBrowserInfo from './getBrowserInfo'
 alert('hello world 2')
 document.getElementById('main').innerHTML = 'hello world'
 
-const min = 1
-const max = 10
+const min = 5
+const max = 20
 var counter = 1
 const random = Math.floor(Math.random() * (max - min + 1)) + min
 const random2 = Math.floor(Math.random() * (max - min + 1)) + min

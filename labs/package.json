@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "jasmine",
-    "build": "eslint src --ext .js  --fix && webpack"
+    "build": "eslint src --ext .js  --fix && webpack",
+    "server": "nodemon server/server.js",
+    "build-dev": "eslint src --ext .js  --fix && webpack --watch",
+    "dev": "concurrently --kill-others \"npm run build-dev\" \"npm run server\""
   },
   "keywords": [
     "challenge"
@@ -19,6 +22,7 @@
     "css-loader": "^1.0.0",
     "eslint": "^5.4.0",
     "html-webpack-plugin": "^3.2.0",
+    "nodemon": "^1.18.3",
     "style-loader": "^0.22.1",
     "webpack": "^4.16.5",
     "webpack-cli": "^3.1.0"
