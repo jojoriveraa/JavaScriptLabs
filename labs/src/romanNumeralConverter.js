@@ -18,4 +18,21 @@ const convert = function (romanNumeral) {
     }
     throw (/not roman/)
 }
-export default convert
+
+const showHosting = function () {
+    const x = 1
+    if (x == 2) {
+        const y = true
+    }
+    const z = {
+        foo: true,
+        bar: true,
+        baz: true
+    }
+    z.foo = true
+    z.qux = true
+    console.log(z)
+    return true
+}
+
+export { convert, showHosting }

@@ -1,4 +1,4 @@
-import convert from '../src/romanNumeralConverter';
+import { convert, showHosting } from '../src/romanNumeralConverter';
 import { parse } from 'querystring';
 
 describe('Roman numeral converter', () => {
@@ -31,5 +31,8 @@ describe('Roman numeral converter', () => {
         expect(() => {
             convert('o')
         }).toThrow(/thats mayan stuff/)
+    })
+    it('will return true', () => {
+        expect(showHosting()).toBeTruthy()
     })
 })

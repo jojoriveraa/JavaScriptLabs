@@ -5,7 +5,7 @@ document.getElementById('main').innerHTML = 'hello world'
 
 const min = 5
 const max = 20
-var counter = 1
+let counter = 1
 const random = Math.floor(Math.random() * (max - min + 1)) + min
 const random2 = Math.floor(Math.random() * (max - min + 1)) + min
 
