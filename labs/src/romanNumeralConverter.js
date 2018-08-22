@@ -1,6 +1,7 @@
 import { throws } from "assert";
 
 const convert = function (romanNumeral) {
+    romanNumeral = romanNumeral.toLowerCase()
     if (romanNumeral === 'i') {
         return 1
     } else if (romanNumeral === 'ii') {
@@ -14,9 +15,9 @@ const convert = function (romanNumeral) {
     }
 
     else if (romanNumeral === 'o') {
-        throw (/thats mayan stuff/)
+        throw ('thats mayan stuff')
     }
-    throw (/not roman/)
+    throw ('not roman')
 }
 
 const showHosting = function () {
@@ -31,7 +32,6 @@ const showHosting = function () {
     }
     z.foo = true
     z.qux = true
-    console.log(z)
     return true
 }
 
