@@ -1,23 +1,34 @@
 import { throws } from "assert";
 
-const convert = function (romanNumeral) {
-    romanNumeral = romanNumeral.toLowerCase()
-    if (romanNumeral === 'i') {
-        return 1
-    } else if (romanNumeral === 'ii') {
-        return 2
-    } else if (romanNumeral === 'ix') {
-        return 9
-    } else if (romanNumeral === 'xlix') {
-        return 49
-    } else if (romanNumeral === 'xx') {
-        return 20
-    }
+const convert = function (numeral, to = "ordinal") {
+    if (to === 'ordinal') {
+        numeral = numeral.toLowerCase()
+        if (numeral === 'i') {
+            return 1
+        } else if (numeral === 'ii') {
+            return 2
+        } else if (numeral === 'ix') {
+            return 9
+        } else if (numeral === 'xlix') {
+            return 49
+        } else if (numeral === 'xx') {
+            return 20
+        }
 
-    else if (romanNumeral === 'o') {
-        throw ('thats mayan stuff')
+        else if (numeral === 'o') {
+            throw ('thats mayan stuff')
+        }
+        throw ('not roman')
+
+    } else if (to === 'roman') {
+        if (numeral === 1) {
+            return 'i'
+        } else if (numeral === 2) {
+            return 'ii'
+        } else if (numeral === 3) {
+            return 'iii'
+        }
     }
-    throw ('not roman')
 }
 
 const showHosting = function () {
