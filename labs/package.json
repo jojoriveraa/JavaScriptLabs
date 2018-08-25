@@ -8,6 +8,7 @@
     "build": "eslint src --ext .js  --fix && npm run dev-test && webpack",
     "server": "nodemon server/server.js",
     "build-dev": "eslint src --ext .js  --fix && webpack --watch",
+    "build-dev-no-lint": "webpack --watch",
     "dev": "concurrently --kill-others \"npm run build-dev\" \"npm run server\"",
     "dev-test": "babel-node spec/runSpecs",
     "ui-tests": "karma start --singleRun"
@@ -23,6 +24,7 @@
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
+    "babel-plugin-static-fs": "^1.1.0",
     "babel-preset-env": "^1.7.0",
     "css-loader": "^1.0.0",
     "eslint": "^5.4.0",
