@@ -1,6 +1,7 @@
 import './site.css'
 import jsonPersons from './persons.json'
 import { getPersonHtml } from './person'
+import { resolve } from 'path';
 
 const text = ['Juan', 'Fool', 'Free', 'Yorch', 'Fly', 'Mix', 'Eleven', 'Hate', 'Fine', 'Pen']
 const getRandom = ((min, max) => Math.floor(Math.random() * (max - min + 1)) + min)
@@ -37,17 +38,28 @@ const displayWithWhile = () => {
     }
 }
 
-const getPeople = () => {
-    return jsonPersons
+const getPersons = () => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            console.log("finished reading persons", jsonPersons)
+            if (jsonPersons) {
+                resolve(jsonPersons)
+            } else {
+                reject('Cant read jsonPersons file')
+            }
+        }, 3000)
+    })
 }
 
-const getPeopleHtml = (people) => {
-    return people.map(person => getPersonHtml(person));
-}
-
-const displayPeople = () => {
-    const people = getPeopleHtml(getPeople());
+const displayPeople = (persons) => {
+    const people = persons.map(person => getPersonHtml(person));
     document.querySelector('#main').innerHTML = people.join('\n');
 }
 
-displayPeople()
+const renderMain = () => {
+    getPersons()
+        .then(displayPeople)
+        .catch(err => console.error(err))
+}
+
+renderMain()
