@@ -45,7 +45,7 @@ const getPersons = () => {
             if (jsonPersons) {
                 resolve(jsonPersons)
             } else {
-                reject('Cant read jsonPersons file')
+                reject('Can not read jsonPersons file')
             }
         }, 3000)
     })
