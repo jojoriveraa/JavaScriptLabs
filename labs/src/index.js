@@ -16,7 +16,7 @@ const getPersons = () => {
 }
 
 const displayPeople = (persons) => {
-    const people = persons.map(p => getPersonHtml.call(p))
+    const people = persons.map(p => getPersonHtml(p))
     document.querySelector('#main').innerHTML = people.join('\n')
 }
 
