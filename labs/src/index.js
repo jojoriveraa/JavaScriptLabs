@@ -1,29 +1,19 @@
 import './site.css'
-import peopleJSON from './persons.json'
 import Person from './person'
 
 const renderPersonCard = (person, atTop) => {
     if (atTop) {
         document.querySelector('#main').innerHTML = person.html + document.querySelector('#main').innerHTML
-    }else {
+    } else {
         document.querySelector('#main').innerHTML += person.html
     }
 }
 
 const renderPeopleList = (people) => people.forEach(person => renderPersonCard(new Person(person)))
 
-const getSavedPeopleJSON = () => {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            console.log('finished reading persons', peopleJSON)
-            if (peopleJSON) {
-                resolve(peopleJSON)
-            } else {
-                reject('Can not read jsonPersons file')
-            }
-        }, 3000)
-    })
-}
+const getPeopleInfo = (n) => fetch(`https://randomuser.me/api/?results=${n}`).then(res => res.json()).then(json => json.results)
+
+const getPeopleInfoAsync = async (n) => fetch(`https://randomuser.me/api/?results=${n}`).then(res => res.json()).then(json => json.results)
 
 const readPersonData = (form) => {
     return new Person({
@@ -42,18 +32,17 @@ const readPersonData = (form) => {
 }
 
 
-const renderMain = () => {
-    getSavedPeopleJSON()
+const renderMain = (n = 5) => {
+    getPeopleInfo(n)
         .then(renderPeopleList)
         .catch(err => console.error(err))
 }
 
-const getPersonsAsync = async () => new Promise(resolve => { setTimeout(() => resolve(peopleJSON), 3000) })
 
-const renderMainAsync = async () => {
+const renderMainAsync = async (n = 5) => {
     try {
-        const people = await getPersonsAsync()
-        renderPeopleList(people)
+        const peopleInfo = await getPeopleInfoAsync(n)
+        renderPeopleList(peopleInfo)
     } catch (err) {
         console.error(err)
     }
@@ -67,5 +56,5 @@ document.querySelector('#addPerson').addEventListener('submit', function (e) {
     form.reset()
 })
 
-renderMain()
-renderMainAsync()
+renderMain(5)
+renderMainAsync(5)
