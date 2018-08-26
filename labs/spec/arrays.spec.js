@@ -33,13 +33,17 @@ describe('Array', () => {
         let people = getPeople()
 
         // loop through the persons array using "for in", console.logging each.
+        let counter = 0
         for (const p in people) {
-            console.log(people[p].first)
+            expect(people[p].first).toEqual(people[counter].first)
+            counter++
         }
 
         // loop through the persons array using "for of", console.logging each.
+        counter = 0
         for (const p of people) {
-            console.log(p.last)
+            expect(p.last).toEqual(people[counter].last)
+            counter++
         }
     })
     it('can destructure', () => {

@@ -1,13 +1,13 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const path = require('path')
 module.exports = {
-    mode: "development",
+    mode: 'development',
     entry: [
-        "babel-polyfill",
-        "./src/index.js"],
+        'babel-polyfill',
+        './src/index.js'],
     output: {
-        path: path.resolve(__dirname, "dist"),
-        filename: "bundle.js"
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'bundle.js'
     },
     module: {
         rules: [
