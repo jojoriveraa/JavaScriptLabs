@@ -2,6 +2,11 @@ import './site.css'
 import jsonPersons from './persons.json'
 import Person from './person'
 
+const displayPeople = (persons) => {
+    const people = persons.map(p => new Person(p).html)
+    document.querySelector('#main').innerHTML = document.querySelector('#main').innerHTML + people.join('\n')
+}
+
 const getPersons = () => {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
@@ -15,10 +20,8 @@ const getPersons = () => {
     })
 }
 
-const displayPeople = (persons) => {
-    const people = persons.map(p => new Person(p).html)
-    document.querySelector('#main').innerHTML = people.join('\n')
-}
+const getPersonsAsync = async () => new Promise(resolve => { setTimeout(() => resolve(jsonPersons), 3000) })
+
 
 const renderMain = () => {
     getPersons()
@@ -26,4 +29,14 @@ const renderMain = () => {
         .catch(err => console.error(err))
 }
 
+const renderMainAsync = async () => {
+    try {
+        const people = await getPersonsAsync()
+        displayPeople(people)
+    } catch (err) {
+        console.error(err)
+    }
+}
+
 renderMain()
+renderMainAsync()
