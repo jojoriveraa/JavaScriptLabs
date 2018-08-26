@@ -1,18 +1,23 @@
 import './site.css'
-import jsonPersons from './persons.json'
+import peopleJSON from './persons.json'
 import Person from './person'
 
-const displayPeople = (persons) => {
-    const people = persons.map(p => new Person(p).html)
-    document.querySelector('#main').innerHTML = document.querySelector('#main').innerHTML + people.join('\n')
+const renderPersonCard = (person, atTop) => {
+    if (atTop) {
+        document.querySelector('#main').innerHTML = person.html + document.querySelector('#main').innerHTML
+    }else {
+        document.querySelector('#main').innerHTML += person.html
+    }
 }
 
-const getPersons = () => {
+const renderPeopleList = (people) => people.forEach(person => renderPersonCard(new Person(person)))
+
+const getSavedPeopleJSON = () => {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            console.log('finished reading persons', jsonPersons)
-            if (jsonPersons) {
-                resolve(jsonPersons)
+            console.log('finished reading persons', peopleJSON)
+            if (peopleJSON) {
+                resolve(peopleJSON)
             } else {
                 reject('Can not read jsonPersons file')
             }
@@ -20,22 +25,47 @@ const getPersons = () => {
     })
 }
 
+const readPersonData = (form) => {
+    return new Person({
+        name: {
+            first: form.first.value,
+            last: form.last.value
+        },
+        email: form.email.value,
+        phone: form.phone.value,
+        cell: form.phone.value,
+        picture: {
+            large: form.photoUrl.value
+        },
+        location: {}
+    })
+}
+
+
 const renderMain = () => {
-    getPersons()
-        .then(displayPeople)
+    getSavedPeopleJSON()
+        .then(renderPeopleList)
         .catch(err => console.error(err))
 }
 
-const getPersonsAsync = async () => new Promise(resolve => { setTimeout(() => resolve(jsonPersons), 3000) })
+const getPersonsAsync = async () => new Promise(resolve => { setTimeout(() => resolve(peopleJSON), 3000) })
 
 const renderMainAsync = async () => {
     try {
         const people = await getPersonsAsync()
-        displayPeople(people)
+        renderPeopleList(people)
     } catch (err) {
         console.error(err)
     }
 }
+
+document.querySelector('#addPerson').addEventListener('submit', function (e) {
+    e.preventDefault()
+    const form = e.target
+    const personData = readPersonData(form)
+    renderPersonCard(personData, true)
+    form.reset()
+})
 
 renderMain()
 renderMainAsync()
