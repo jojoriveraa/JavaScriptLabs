@@ -20,14 +20,13 @@ const getPersons = () => {
     })
 }
 
-const getPersonsAsync = async () => new Promise(resolve => { setTimeout(() => resolve(jsonPersons), 3000) })
-
-
 const renderMain = () => {
     getPersons()
         .then(displayPeople)
         .catch(err => console.error(err))
 }
+
+const getPersonsAsync = async () => new Promise(resolve => { setTimeout(() => resolve(jsonPersons), 3000) })
 
 const renderMainAsync = async () => {
     try {
