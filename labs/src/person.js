@@ -1,6 +1,14 @@
 import { readFileSync } from 'fs'
 const template = readFileSync('./src/person-card.html', 'utf8')
 
-const getPersonHtml = (p) => eval('`' + template + '`')
+class Person {
 
-export { getPersonHtml }    
+    constructor(p) {
+        this._p = p
+    }
+
+    get p() { return this._p }
+    get html() { return eval('`' + template + '`') }
+}
+
+export { Person }    

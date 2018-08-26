@@ -1,6 +1,6 @@
 import './site.css'
 import jsonPersons from './persons.json'
-import { getPersonHtml } from './person'
+import { Person } from './person'
 
 const getPersons = () => {
     return new Promise((resolve, reject) => {
@@ -16,7 +16,7 @@ const getPersons = () => {
 }
 
 const displayPeople = (persons) => {
-    const people = persons.map(p => getPersonHtml(p))
+    const people = persons.map(p => new Person(p).html)
     document.querySelector('#main').innerHTML = people.join('\n')
 }
 
