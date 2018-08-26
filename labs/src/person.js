@@ -11,4 +11,4 @@ class Person {
     get html() { return eval('`' + template + '`') }
 }
 
-export { Person }    
+export default Person     

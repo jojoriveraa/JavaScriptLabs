@@ -1,6 +1,6 @@
 import './site.css'
 import jsonPersons from './persons.json'
-import { Person } from './person'
+import Person from './person'
 
 const getPersons = () => {
     return new Promise((resolve, reject) => {
